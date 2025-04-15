@@ -6,12 +6,12 @@
  * Return: 0
  */
 
-int main (void)
+int main(void)
 {
 	pid_t my_PID = getpid();
-	printf("child %u\n", my_PID);
-	
 	pid_t my_PPID = getppid();
+
+	printf("child %u\n", my_PID);
 	printf("parent %u\n", my_PPID);
 
 	return (0);
