@@ -16,7 +16,7 @@ int main(void)
 
 	getline(&line, &len, stdin);
 	linetok = strtok(line, " ");
-	
+
 	while (linetok != NULL)
 	{
 		printf("%s", linetok);
