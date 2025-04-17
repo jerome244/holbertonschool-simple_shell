@@ -33,11 +33,11 @@ int main(void)
 		{
 			if (array[1] != NULL)
 			{
-				exit_shell(2);
+				_exit(2);
 			}
 			else
 			{
-				exit_shell(0);
+				_exit(0);
 			}
 		}
 		else
@@ -46,10 +46,10 @@ int main(void)
 				if (array[1] && strcmp(array[1], "-i") == 0)
 				{
 					env_var = array[2];
-					env_shell(env_var);
+					_env(env_var);
 				}
 				else
-					env_shell(NULL);
+					_env(NULL);
 			}
 			else
 				pid = fork();
