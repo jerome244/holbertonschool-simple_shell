@@ -4,7 +4,7 @@
  * env_shell - function to implement env command
  * @env_var: pointer to an array of env variables
  */
-void env_shell(char *env_var)
+void _env(char *env_var)
 {
 	char *env_vars[2], **env;
 
