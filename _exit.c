@@ -5,7 +5,7 @@
  * @status: code status
  */
 
-void exit_shell(int status)
+void _exit(int status)
 {
 	exit(status);
 }
