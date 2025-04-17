@@ -13,7 +13,7 @@ extern char **environ;
 char **splitter(char *str, char *delim);
 char *_getline(void);
 char **pathfinder(void);
-void exit_shell(int status);
-void env_shell(char *env_var);
+void _exit(int status);
+void _env(char *env_var);
 
 #endif
