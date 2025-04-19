@@ -4,7 +4,7 @@ int main(void)
 {
     char *buf = NULL;
     size_t buf_size = 0;
-    int nread;
+    int nread, i;
    
     while (1)
     {
@@ -22,8 +22,11 @@ int main(void)
 
         if (buf[0] == '\0')
             continue;
-	if (is_empty_line(buf))
-    		continue;
+	for (i = 0; buf[i]; i++)
+	{
+		if (is_space(buf[i]))
+    continue;
+	}
         pid_printer(buf);
     }
 
