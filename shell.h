@@ -8,5 +8,6 @@
 #include <sys/wait.h>
 
 void pid_printer(char *buf);
+char *trim_whitespace(char *str);
 
 #endif
