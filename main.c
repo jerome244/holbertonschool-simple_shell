@@ -4,16 +4,16 @@ int main(void)
 {
     char *buf = NULL;
     size_t buf_size = 0;
-    ssize_t nread;
+    int nread;
    
     while (1)
     {
-	    if (isatty(STDIN_FILENO))
         write(STDOUT_FILENO, "#cisfun$ ", 9);
 
         nread = getline(&buf, &buf_size, stdin);
         if (nread == -1)
         {
+            write(STDOUT_FILENO, "\n", 1);
             break;
         }
 
