@@ -22,7 +22,8 @@ int main(void)
 
         if (buf[0] == '\0')
             continue;
-
+	if (is_empty_line(buf))
+    		continue;
         pid_printer(buf);
     }
 
