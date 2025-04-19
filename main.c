@@ -14,7 +14,6 @@ int main(void)
         nread = getline(&buf, &buf_size, stdin);
         if (nread == -1)
         {
-            write(STDOUT_FILENO, "\n", 1);
             break;
         }
 
