@@ -19,8 +19,8 @@ int main(void)
 		if (isatty(STDIN_FILENO))
 		write(STDOUT_FILENO, "#cisfun$ ", 9);
 		n = getline(&buf, &buf_size, stdin);
-		if (n == -1)
-			break;
+			if (buf[n - 1] == '\n')
+        buf[n - 1] = '\0';
 		token = strtok(buf, " \t\n");
         while (token != NULL && i < MAX_ARGS - 1)
         {
