@@ -28,7 +28,7 @@ void pid_printer(char *buf)
             }
         }
         else
-            write(STDERR_FILENO, "./shell: No such file or directory\n", 35);
-        token = strtok(NULL, delim);
+            write(STDERR_FILENO, "No such file or directory: Permission denied\n", 46);
+        exit(127);
     }
 }
