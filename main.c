@@ -20,10 +20,7 @@ int main(void)
 		write(STDOUT_FILENO, "#cisfun$ ", 9);
 		n = getline(&buf, &buf_size, stdin);
 		if (n == -1)
-		{
-			write(STDOUT_FILENO, "\n", 1);
 			break;
-		}
 		token = strtok(buf, " \t\n");
         while (token != NULL && i < MAX_ARGS - 1)
         {
@@ -34,7 +31,7 @@ int main(void)
 
         if (argv[0] == NULL)
             continue;
-		pid_printer(argv);
+	pid_printer(argv);
 	}
 	free(buf);
 	return (0);
