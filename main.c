@@ -27,9 +27,9 @@ int main(void)
 		if (is_space(buf[i]))
     continue;
 	}
+	if (!is_empty_or_whitespace(buf))
         pid_printer(buf);
     }
-
     free(buf);
     return 0;
 }
