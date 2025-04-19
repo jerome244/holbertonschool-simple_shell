@@ -8,30 +8,37 @@
 
 int main(void)
 {
-	char *buf = NULL;
-	size_t buf_size = 0;
-	int n, i = 0;
-	char *argv[MAX_ARGS];
-    	char *token;
-
-	while (1)
-	{
-		if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, "#cisfun$ ", 9);
-		n = getline(&buf, &buf_size, stdin);
-		if (n == -1)
-			break;
-		token = strtok(buf, " \t\n");
-        	while (token != NULL && i < MAX_ARGS - 1)
-        	{
-            		argv[i++] = token;
-            		token = strtok(NULL, " \t\n");
-        	}
-		argv[i] = NULL;
-		if (argv[0] == NULL)
-			continue;
-		pid_printer(argv);
-	}
-	free(buf);
-	return (0);
+        char *buf = NULL;
+        size_t buf_size = 0;
+        int prompt, i = 0;
+        char *argv[MAX_ARGS];
+        char *token; 
+        
+                    while (1)
+        {
+                if (isatty(STDIN_FILENO))
+                        write(STDOUT_FILENO, "#cisfun$ ", 9);
+                prompt = getline(&buf, &buf_size, stdin);
+                if (!prompt)
+                        break;
+                token = strtok(buf, " \t\n");
+                if (!token)
+                {
+                        free(token);
+                        continue;
+                }
+                while (token != NULL && i < MAX_ARGS - 1)
+                {
+                        argv[i++] = token;
+                        token = strtok(NULL, " \t\n");
+                }
+                argv[i] = NULL;
+                free(token);
+                continue;
+                if (argv[0] == NULL)
+                        continue;
+                pid_printer(argv);
+        }
+        free(buf);
+        return (0);
 }
