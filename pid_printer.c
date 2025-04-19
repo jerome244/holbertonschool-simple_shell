@@ -1,5 +1,7 @@
 #include "shell.h"
 
+#define MAX_ARGS 64
+
 void pid_printer(char *buf)
 {
     pid_t pid;
@@ -7,31 +9,28 @@ void pid_printer(char *buf)
     char *argv[2];
     char *token;
     const char *delim = " \t\r\n";
+    int i = 0;
     
     token = strtok(buf, delim);
-    while (token != NULL)
+    while (token != NULL && i < MAX_ARGS - 1)
     {
-        if (access(token, X_OK) == 0)
-        {
-            pid = fork();
-            if (pid == 0)
-            {
-                argv[0] = token;
-		argv[1] = NULL;
-                execve(token, argv, NULL);
-                perror("./shell: No such file or directory");
-                exit(EXIT_FAILURE);
-            }
-            else
-            {
-                wait(&status);
-            }
-        }
-        else
-	{
-            write(STDERR_FILENO, "No such file or directory: Permission denied\n", 46);
-        exit(127);
-	}
-	token = strtok(NULL, delim);
+	    if (access(token, X_OK) == 0)
+	    {
+	    	pid = fork();
+            	if (pid == 0)
+            	{
+                	argv[i++] = token;
+                	execve(argv[0], argv, NULL);
+                	perror("./shell: No such file or directory");
+                	exit(EXIT_FAILURE);
+		}
+            	else
+            	{
+                	wait(&status);
+            	}
+	    }
+	    else
+		    write(STDERR_FILENO, "./shell: No such file or directory\n", 35);
+	    token = strtok(NULL, delim);
     }
 }
