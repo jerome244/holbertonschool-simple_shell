@@ -7,6 +7,6 @@
 #include <string.h>
 #include <sys/wait.h>
 
-void pid_printer(char *buf);
+void pid_printer(char **argv);
 
 #endif
