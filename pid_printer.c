@@ -14,10 +14,10 @@ void pid_printer(char *buf)
 	child_pid = fork();
 	if (child_pid < 0)
 	{
-		perror("fork");
+		perror("Error");
 	}
 
-	if (child_pid == 0)
+	else if (child_pid == 0)
 	{
 		av[0] = buf;
 		av[1] = NULL;
