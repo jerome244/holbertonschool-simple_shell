@@ -4,30 +4,36 @@
  * main - main function of the simple_shell app
  * Return: always 0
  */
+#define MAX_ARGS 64
 
 int main(void)
 {
 	char *buf = NULL;
 	size_t buf_size = 0;
-	int n;
-	int is_interactive = isatty(STDIN_FILENO);
+	int n, i;
+	char *argv[MAX_ARGS];
+    	char *token;
 
 	while (1)
 	{
-		if (is_interactive)
-			write(STDOUT_FILENO, "#cisfun$ ", 9);
+		write(STDOUT_FILENO, "#cisfun$ ", 9);
 		n = getline(&buf, &buf_size, stdin);
 		if (n == -1)
 		{
-			if (is_interactive)
-				write(STDOUT_FILENO, "\n", 1);
+			write(STDOUT_FILENO, "\n", 1);
 			break;
 		}
-		if (buf[n - 1] == '\n')
-			buf[n - 1] = '\0';
-		if (buf[0] == '\0')
-			continue;
-		pid_printer(buf);
+		token = strtok(buf, " \t\n");
+        while (token != NULL && i < MAX_ARGS - 1)
+        {
+            argv[i++] = token;
+            token = strtok(NULL, " \t\n");
+        }
+        argv[i] = NULL;
+
+        if (argv[0] == NULL)
+            continue;
+		pid_printer(argv);
 	}
 	free(buf);
 	return (0);
