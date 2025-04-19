@@ -9,5 +9,6 @@
 
 void pid_printer(char *buf);
 int is_space(char c);
+int is_empty_or_whitespace(char *str);
 
 #endif
