@@ -8,12 +8,13 @@ int main(void)
    
     while (1)
     {
+	    if (isatty(STDIN_FILENO))
         write(STDOUT_FILENO, "#cisfun$ ", 9);
 
         nread = getline(&buf, &buf_size, stdin);
         if (nread == -1)
         {
-            write(STDOUT_FILENO, "\n", 1);  /*For clean exit on Ctrl+D*/
+            write(STDOUT_FILENO, "\n", 1);
             break;
         }
 
