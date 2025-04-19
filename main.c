@@ -10,7 +10,7 @@ int main(void)
 {
 	char *buf = NULL;
 	size_t buf_size = 0;
-	int i = 0;
+	int n, i = 0;
 	char *argv[MAX_ARGS];
     	char *token;
 
@@ -18,7 +18,9 @@ int main(void)
 	{
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "#cisfun$ ", 9);
-		getline(&buf, &buf_size, stdin);
+		n = getline(&buf, &buf_size, stdin);
+		if (n == -1)
+			break;
 		token = strtok(buf, " \t\n");
         	while (token != NULL && i < MAX_ARGS - 1)
         	{
