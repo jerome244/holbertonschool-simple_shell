@@ -10,12 +10,13 @@ int main(void)
 {
 	char *buf = NULL;
 	size_t buf_size = 0;
-	int n, i;
+	int n, i = 0;
 	char *argv[MAX_ARGS];
     	char *token;
 
 	while (1)
 	{
+		if (isatty(STDIN_FILENO))
 		write(STDOUT_FILENO, "#cisfun$ ", 9);
 		n = getline(&buf, &buf_size, stdin);
 		if (n == -1)
