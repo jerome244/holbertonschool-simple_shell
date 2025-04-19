@@ -17,21 +17,18 @@ int main(void)
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-		write(STDOUT_FILENO, "#cisfun$ ", 9);
+			write(STDOUT_FILENO, "#cisfun$ ", 9);
 		n = getline(&buf, &buf_size, stdin);
-			if (buf[n - 1] == '\n')
-        buf[n - 1] = '\0';
 		token = strtok(buf, " \t\n");
-        while (token != NULL && i < MAX_ARGS - 1)
-        {
-            argv[i++] = token;
-            token = strtok(NULL, " \t\n");
-        }
-        argv[i] = NULL;
-
-        if (argv[0] == NULL)
-            continue;
-	pid_printer(argv);
+        	while (token != NULL && i < MAX_ARGS - 1)
+        	{
+            		argv[i++] = token;
+            		token = strtok(NULL, " \t\n");
+        	}
+		argv[i] = NULL;
+		if (argv[0] == NULL)
+			continue;
+		pid_printer(argv);
 	}
 	free(buf);
 	return (0);
