@@ -10,14 +10,17 @@ int main(void)
 	char *buf = NULL;
 	size_t buf_size = 0;
 	int n;
+	int is_interactive = isatty(STDIN_FILENO);
 
 	while (1)
 	{
-		write(STDOUT_FILENO, "#cisfun$ ", 9);
+		if (is_interactive)
+			write(STDOUT_FILENO, "#cisfun$ ", 9);
 		n = getline(&buf, &buf_size, stdin);
 		if (n == -1)
 		{
-			write(STDOUT_FILENO, "\n", 1);
+			if (is_interactive)
+				write(STDOUT_FILENO, "\n", 1);
 			break;
 		}
 		if (buf[n - 1] == '\n')
