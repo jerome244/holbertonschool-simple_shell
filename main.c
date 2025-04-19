@@ -1,48 +1,31 @@
 #include "shell.h"
 
-/**
- * main - main function of the simple_shell app
- * Return: always 0
- */
-#define MAX_ARGS 64
-
 int main(void)
 {
-        char *buf = NULL;
-        size_t buf_size = 0;
-        int prompt, i = 0;
-        char *argv[MAX_ARGS];
-        char *token; 
-        
-                    while (1)
+    char *buf = NULL;
+    size_t buf_size = 0;
+    ssize_t nread;
+   
+    while (1)
+    {
+        write(STDOUT_FILENO, "#cisfun$ ", 9);
+
+        nread = getline(&buf, &buf_size, stdin);
+        if (nread == -1)
         {
-                if (isatty(STDIN_FILENO))
-                        write(STDOUT_FILENO, "#cisfun$ ", 9);
-                prompt = getline(&buf, &buf_size, stdin);
-
-                if (!prompt)
-                        break;
-		if (buf[prompt - 1] == '\n')
-    buf[prompt - 1] = '\0';
-
-                token = strtok(buf, " \t\n");
-                if (!token)
-                {
-                        free(token);
-                        continue;
-                }
-                while (token != NULL && i < MAX_ARGS - 1)
-                {
-                        argv[i++] = token;
-                        token = strtok(NULL, " \t\n");
-                }
-                argv[i] = NULL;
-                free(token);
-                continue;
-                if (argv[0] == NULL)
-                        continue;
-                pid_printer(argv);
+            write(STDOUT_FILENO, "\n", 1);  /*For clean exit on Ctrl+D*/
+            break;
         }
-        free(buf);
-        return (0);
+
+        if (buf[nread - 1] == '\n')
+            buf[nread - 1] = '\0';
+
+        if (buf[0] == '\0')
+            continue;
+
+        pid_printer(buf);
+    }
+
+    free(buf);
+    return 0;
 }
