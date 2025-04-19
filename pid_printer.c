@@ -5,23 +5,30 @@ void pid_printer(char *buf)
     pid_t pid;
     int status;
     char *argv[2];
-
-    pid = fork();
-        if (pid < 0)
+    char *token;
+    const char *delim = " \t\r\n";
+    
+    token = strtok(buf, delim);
+    while (token != NULL)
+    {
+        if (access(token, X_OK) == 0)
         {
-            perror("fork");
-        }
-
-        if (pid == 0)
-        {
-            argv[0] = buf;
-            argv[1] = NULL;
-            execve(buf, argv, NULL);
-            perror("./shell");
-            exit(EXIT_FAILURE);
+            pid = fork();
+            if (pid == 0)
+            {
+                argv[0] = token;
+		argv[1] = NULL;
+                execve(token, argv, NULL);
+                perror("./shell: No such file or directory");
+                exit(EXIT_FAILURE);
+            }
+            else
+            {
+                wait(&status);
+            }
         }
         else
-        {
-            wait(&status);
-        }
+            write(STDERR_FILENO, "./shell\n", 9);
+        token = strtok(NULL, delim);
+    }
 }
