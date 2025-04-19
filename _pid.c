@@ -13,7 +13,7 @@ void pid_printer(char *buf)
     {
         if (access(token, X_OK) == 0)
         {
-            pid_t pid = fork();
+            pid = fork();
             if (pid == 0)
             {
                 argv[0] = token;
