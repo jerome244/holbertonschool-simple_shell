@@ -16,8 +16,10 @@ void pid_printer(char *buf)
     {
 	    argv[i++] = token;
 	    token = strtok(NULL, delim);
+
     }
     argv[i] = NULL;
+
    	pid = fork();
          	if (pid == 0)
            	{
