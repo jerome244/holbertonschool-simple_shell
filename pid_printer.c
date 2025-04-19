@@ -28,7 +28,9 @@ void pid_printer(char *buf)
             }
         }
         else
+	{
             write(STDERR_FILENO, "No such file or directory: Permission denied\n", 46);
         exit(127);
+	}
     }
 }
