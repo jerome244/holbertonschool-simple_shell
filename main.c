@@ -7,7 +7,7 @@
 
 int main(void)
 {
-	char *cmd, *buf = NULL;
+	char *buf = NULL;
 	size_t buf_size = 0;
 	int n;
 	int is_interactive = isatty(STDIN_FILENO);
@@ -25,7 +25,6 @@ int main(void)
 		}
 		if (buf[n - 1] == '\n')
 			buf[n - 1] = '\0';
-		cmd = trim_whitespace(buf);
 		if (buf[0] == '\0')
 			continue;
 		pid_printer(buf);
