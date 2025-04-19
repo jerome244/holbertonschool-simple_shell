@@ -8,7 +8,8 @@
 int main(void)
 {
 	char *buf = NULL;
-	size_t n, buf_size = 0;
+	size_t buf_size = 0;
+	int n;
 
 	while (1)
 	{
