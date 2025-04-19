@@ -19,8 +19,12 @@ int main(void)
                 if (isatty(STDIN_FILENO))
                         write(STDOUT_FILENO, "#cisfun$ ", 9);
                 prompt = getline(&buf, &buf_size, stdin);
+
                 if (!prompt)
                         break;
+		if (buf[prompt - 1] == '\n')
+    buf[prompt - 1] = '\0';
+
                 token = strtok(buf, " \t\n");
                 if (!token)
                 {
