@@ -1,35 +1,29 @@
 #include "shell.h"
 
+#define MAX_ARGS 64
+
 void pid_printer(char *buf)
 {
     pid_t pid;
     int status;
-    char *argv[2];
+    char *argv[MAX_ARGS];
     char *token;
-    const char *delim = " \t\r\n";
+    int i = 0;
     
-    token = strtok(buf, delim);
-    while (token != NULL)
+    token = strtok(buf, " \t\n");
+    while (token != NULL && i < MAX_ARGS - 1)
     {
-        if (access(token, X_OK) == 0)
+        argv[i++] = token;
+        token = strtok(NULL, " \t\n");
+    }
+    argv[i] = NULL;
+        pid = fork();
+        if (pid == 0)
         {
-            pid = fork();
-            if (pid == 0)
-            {
-                argv[0] = token;
-		argv[1] = NULL;
-
-                execve(token, argv, NULL);
-                perror("./shell");
-                exit(EXIT_FAILURE);
-            }
-            else
-            {
-                wait(&status);
-            }
+            execve(argv[0], argv, NULL);
+            perror("./shell");
+            exit(EXIT_FAILURE);
         }
         else
-            write(STDERR_FILENO, "./shell: No such file or directory\n", 35);
-        token = strtok(NULL, delim);
-    }
+            wait(&status);
 }
