@@ -28,7 +28,7 @@ void pid_printer(char *buf)
             }
         }
         else
-            write(STDERR_FILENO, "./shell\n", 9);
+            write(STDERR_FILENO, "./shell: No such file or directory\n", 35);
         token = strtok(NULL, delim);
     }
 }
