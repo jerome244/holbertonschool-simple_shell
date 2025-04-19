@@ -1,33 +1,35 @@
 #include "shell.h"
 
-/**
- * pid_printer - print the pid status
- * @buf: take the user input for checking argument
- */
-
 void pid_printer(char *buf)
 {
-	pid_t child_pid;
-	int status;
-	char *av[2];
+    pid_t pid;
+    int status;
+    char *argv[2];
+    char *token;
+    const char *delim = " \t\r\n";
+    
+    token = strtok(buf, delim);
+    while (token != NULL)
+    {
+        if (access(token, X_OK) == 0)
+        {
+            pid = fork();
+            if (pid == 0)
+            {
+                argv[0] = token;
+		argv[1] = NULL;
 
-	child_pid = fork();
-	if (child_pid < 0)
-	{
-		perror("Error");
-	}
-
-	else if (child_pid == 0)
-	{
-		av[0] = buf;
-		av[1] = NULL;
-
-		execve(buf, av, NULL);
-		perror("./shell");
-		exit(EXIT_FAILURE);
-	}
-	else
-	{
-		wait(&status);
-	}
+                execve(token, argv, NULL);
+                perror("./shell");
+                exit(EXIT_FAILURE);
+            }
+            else
+            {
+                wait(&status);
+            }
+        }
+        else
+            write(STDERR_FILENO, "./shell: No such file or directory\n", 35);
+        token = strtok(NULL, delim);
+    }
 }
