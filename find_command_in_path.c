@@ -12,7 +12,7 @@ char *find_command_in_path(char *command)
     token = strtok(path_copy, ":");
     while (token)
     {
-        full_path = malloc(strlen(token) + strlen(command) + 2); // '/' + '\0'
+        full_path = malloc(strlen(token) + strlen(command) + 2);
         if (!full_path)
         {
             free(path_copy);
@@ -22,12 +22,12 @@ char *find_command_in_path(char *command)
         if (stat(full_path, &st) == 0 && (st.st_mode & S_IXUSR))
         {
             free(path_copy);
-            return full_path; // Found!
+            return full_path;
         }
         free(full_path);
         full_path = NULL;
         token = strtok(NULL, ":");
     }
     free(path_copy);
-    return NULL; // Not found
+    return NULL;
 }
