@@ -6,9 +6,12 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/wait.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 void pid_printer(char *buf);
 int is_space(char c);
 int is_empty_or_whitespace(char *str);
+char *find_command_in_path(char *command);
 
 #endif
