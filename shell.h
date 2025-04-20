@@ -12,6 +12,5 @@
 void pid_printer(char *buf);
 int is_space(char c);
 int is_empty_or_whitespace(char *str);
-char *find_command_in_path(char *command);
 
 #endif

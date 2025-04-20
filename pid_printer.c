@@ -11,7 +11,6 @@ void pid_printer(char *buf)
 	char *token;
 	const char *delim = " \t\r\n";
 	int i = 0;
-	char *cmd_path = NULL;
 
 	token = strtok(buf, delim);
 	while (token != NULL)
@@ -20,14 +19,6 @@ void pid_printer(char *buf)
 		token = strtok(NULL, delim);
 	}
 	argv[i] = NULL;
-	if (access(argv[0], X_OK) == 0)
-            cmd_path = strdup(argv[0]);
-    else
-        cmd_path = find_command_in_path(argv[0]);
-    if (cmd_path == NULL)
-        fprintf(stderr, "./shell: %s: command not found\n", argv[0]);
-    else
-    {
 	pid = fork();
 	if (pid == 0)
 	{
@@ -37,5 +28,4 @@ void pid_printer(char *buf)
 	}
 	else
 		wait(&status);
-    }
 }
