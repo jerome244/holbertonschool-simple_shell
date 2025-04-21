@@ -8,7 +8,7 @@
  char **pathfinder(void)
  {
 		 char **array = NULL;
-		 char **environment = malloc(10000);
+		 char **environment = malloc(sizeof(char *) * 100);
 		 char *new, *temp = NULL;
 		 int i, j = 0, num = 0;
  
