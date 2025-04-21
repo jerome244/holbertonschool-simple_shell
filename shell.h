@@ -8,11 +8,9 @@
 #include <sys/wait.h>
 
 extern char **environ;
-extern char *buf;
 
 void pid_printer(char **token, char **path);
 char **tokenization(char *prompt, char *delim);
-char *_getline(void);
 char **pathfinder(void);
 char **path_tokenizer(char *temp);
 char *path_finder(char **environment);
