@@ -34,8 +34,8 @@
 				 free(array);
 				 break;
 			 }
-			 for (i = 0; i < 2; i++)
-				 free(*(array + i));
+			 for (i = 0; array[i]; i++)
+				 free(array[i]);
 			 free(array);
 			 j++;
 		 }
