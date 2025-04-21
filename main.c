@@ -29,12 +29,9 @@ int main(void)
 		if (strcmp(token[0], "exit") == 0)
                 {
                         if (token[1] != NULL)
-                                _exit(2);
+                                exit_shell(2);
                         else
-			{
-				if (!isatty(STDIN_FILENO))
-                                	_exit(0);
-			}
+                               	exit_shell(0);
                 }
         	pid_printer(token, path);
 	}
