@@ -33,6 +33,7 @@ int main(void)
                         else
 			{
 				if (!isatty(STDIN_FILENO))
+					fprintf(stderr, "OK\n");
                                 _exit(0);
 			}
                 }
