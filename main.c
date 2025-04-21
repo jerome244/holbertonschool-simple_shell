@@ -21,7 +21,7 @@ int main(void)
 			break;
 		token = tokenization(prompt, " \t\r\n");
 		free(prompt);
-		if (!*token)
+		if (!*token || !*token)
 		{
 			free(token);
 			continue;
