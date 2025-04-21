@@ -14,13 +14,16 @@ void pid_printer(char **token, char **path)
 
 			while (path[i])
 			{
-				execve(token[0], token, environ);
 				temp = malloc(strlen(path[i]) + strlen(command) + 1);
+				if (!temp)
+					exit(EXIT_FAILURE);
 				strcpy(temp, path[i]);
+				strcat(temp, "/");
 				strcat(temp, command);
 				free(token[0]);
 				token[0] = strdup(temp);
 				free(temp);
+				execve(token[0], token, environ);
 				i++;
 			}
 			printf("No such file or directory\n");
