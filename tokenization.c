@@ -16,7 +16,7 @@ char **tokenization(char *prompt, char *delim)
 	if (prompt == NULL || prompt[0] == '\0')
 		return (NULL);
 
-    new_token = malloc(strlen(prompt) * sizeof(char *));
+    new_token = malloc((strlen(prompt) + 1) * sizeof(char *));
 
 	token = strtok(prompt, delim);
     
