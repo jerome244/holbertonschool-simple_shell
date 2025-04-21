@@ -3,10 +3,8 @@
 void pid_printer(char **token, char **path)
 {
 	pid_t pid;
-    int status;
 	char *temp, *command;
-    const char *delim = " \t\r\n";
-	int i = 0;
+	int status, i = 0;
 
 	pid = fork();
 		if (pid == 0)
