@@ -33,7 +33,7 @@ int main(void)
                         else
 			{
 				if (!isatty(STDIN_FILENO))
-					write(1, "OK\n", 3);
+					write(1, "OK", 2);
                                 _exit(0);
 			}
                 }
