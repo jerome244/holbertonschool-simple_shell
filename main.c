@@ -26,7 +26,14 @@ int main(void)
 			free(token);
 			continue;
 		}
-        pid_printer(token, path);
+		if (strcmp(token[0], "exit") == 0)
+                {
+                        if (token[1] != NULL)
+                                _exit(2);
+                        else
+                                _exit(0);
+                }
+        	pid_printer(token, path);
 	}
 	for (i = 0; *(path + i); i++)
 		free(*(path + i));
