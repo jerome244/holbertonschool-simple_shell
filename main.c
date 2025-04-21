@@ -1,4 +1,3 @@
-
 #include "shell.h"
 
 /**
@@ -9,22 +8,19 @@
 
 int main(void)
 {
-	char *prompt = NULL, **token, **path;
-	int i = 0, checker;
-	size_t prompt_size = 0;
+	char *prompt, **token, **path;
+	int i = 0;
 
 	path = pathfinder();
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
 			write(1, ":) ", 3);
-		checker = getline(&prompt, &prompt_size, stdin);
-		if (checker == -1)
+		prompt = _getline();
+		if (!prompt)
 			break;
 		token = tokenization(prompt, " \t\r\n");
 		free(prompt);
-		prompt = NULL;
-		
 		if (!*token)
 		{
 			free(token);

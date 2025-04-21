@@ -7,24 +7,70 @@
 
 char **pathfinder(void)
 {
-        char **path_token = NULL;
-        char **environment;
-        char *temp = NULL;
-        int i, num = 0;
-        int env_count = 0;
+	char **array = NULL;
+	char **environment = malloc(10000);
+	char *new, *temp = NULL;
+	int i, j = 0, num = 0;
 
-        while (environ[env_count])
-    		env_count++;
-    	environment = malloc(sizeof(char *) * (env_count + 1));
-    	if (!environment)
-        	return NULL;
-    	num = allocate_environment_memory(environment);
-    	temp = path_finder(environment);
-    	path_token = path_tokenizer(temp);
-        if (temp)
-                free(temp);
-        for (i = 0; i < num; i++)
-                free(environment[i]);
-        free(environment);
-        return (path_token);
+	while (environ[j])
+	{
+		environment[j] = malloc(strlen(environ[j]) + 1);
+		strcpy(environment[j], environ[j]);
+		j++;
+		num++;
+	}
+	j = 0;
+
+	while (environment[j])
+	{
+		array = tokenization(environment[j], "=");
+		if (!strcmp(*array, "PATH"))
+		{
+			if (!*(array + 1))
+				break;
+			temp = strdup(*(array + 1));
+
+
+			for (i = 0; i < 2; i++)
+			{
+				free(*(array + i));
+			}
+			free(array);
+			break;
+
+
+		}
+		for (i = 0; i < 2; i++)
+		{
+			free(*(array + i));
+		}
+		free(array);
+		j++;
+	}
+
+
+	array = tokenization(temp, ":");
+	if (!array)
+		return (NULL);
+	i = 0;
+	while (array[i])
+	{
+		new = malloc(strlen(array[i]) + 2);
+		if (!new)
+			return NULL;
+		strcpy(new, array[i]);
+		strcat(new, "/");
+		free(array[i]);
+		array[i] = new;
+		i++;
+	}
+
+    
+	if (temp)
+		free(temp);
+	for (i = 0; i < num; i++)
+		free(environment[i]);
+	free(environment);
+	free(new);
+	return (array);
 }

@@ -1,5 +1,10 @@
 #include "shell.h"
 
+/** pid_printer - launch app from path file.
+ * @token: string token.
+ * @path: array tokenized of the path.
+ */
+
 void pid_printer(char **token, char **path)
 {
 	pid_t pid;
@@ -11,19 +16,15 @@ void pid_printer(char **token, char **path)
 		{
 			command = strdup(token[0]);
 			execve(token[0], token, environ);
-
 			while (path[i])
 			{
-				temp = malloc(strlen(path[i]) + strlen(command) + 3);
-				if (!temp)
-					exit(EXIT_FAILURE);
+				execve(token[0], token, environ);
+				temp = malloc(strlen(path[i]) + strlen(command) + 1);
 				strcpy(temp, path[i]);
-				strcat(temp, "/");
 				strcat(temp, command);
 				free(token[0]);
 				token[0] = strdup(temp);
 				free(temp);
-				execve(token[0], token, environ);
 				i++;
 			}
 			printf("No such file or directory\n");
