@@ -60,6 +60,5 @@ char **pathfinder(void)
 	for (i = 0; i < num; i++)
 		free(environment[i]);
 	free(environment);
-	free(new);
 	return (array);
 }
