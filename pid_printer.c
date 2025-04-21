@@ -17,12 +17,10 @@ void pid_printer(char **token, char **path)
 			command = strdup(token[0]);
 			while (path[i])
 			{
-				execve(token[0], token, environ);
 				temp = malloc(strlen(path[i]) + strlen(command) + 1);
 				strcpy(temp, path[i]);
 				strcat(temp, command);
-				free(token[0]);
-				token[0] = strdup(temp);
+				execve(temp, token, environ);
 				free(temp);
 				i++;
 			}
