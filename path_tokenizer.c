@@ -22,6 +22,6 @@ char **path_tokenizer(char *temp)
                 array[i] = new;
                 i++;
         }
-
+	free(new);
     return (array);
 }
