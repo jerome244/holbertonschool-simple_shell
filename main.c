@@ -31,7 +31,10 @@ int main(void)
                         if (token[1] != NULL)
                                 _exit(2);
                         else
+			{
+				if (!isatty(STDIN_FILENO))
                                 	_exit(0);
+			}
                 }
         	pid_printer(token, path);
 	}
