@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * pathfinder - function to locate file in the path
  * Return: array
@@ -29,26 +28,17 @@ char **pathfinder(void)
 			if (!*(array + 1))
 				break;
 			temp = strdup(*(array + 1));
-
-
 			for (i = 0; i < 2; i++)
-			{
 				free(*(array + i));
-			}
 			free(array);
 			break;
-
-
 		}
 		for (i = 0; i < 2; i++)
-		{
 			free(*(array + i));
-		}
 		free(array);
 		j++;
 	}
-
-
+	
 	array = tokenization(temp, ":");
 	if (!array)
 		return (NULL);
@@ -65,7 +55,6 @@ char **pathfinder(void)
 		i++;
 	}
 
-    
 	if (temp)
 		free(temp);
 	for (i = 0; i < num; i++)
