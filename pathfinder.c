@@ -26,11 +26,11 @@
 			 array = tokenization(environment[j], "=");
 			 if (!strcmp(*array, "PATH"))
 			 {
-				 if (!*(array + 1))
-				 break;
-				 temp = strdup(*(array + 1));
-				 for (i = 0; i < [i]; i++)
-					 free(array[i]);
+				 if (!array[1])
+				 	break;
+				 temp = strdup(array[1]);
+				 for (i = 0; array[i]; i++)
+					free(array[i]);
 				 free(array);
 				 break;
 			 }
