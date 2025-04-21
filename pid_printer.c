@@ -14,7 +14,7 @@ void pid_printer(char **token, char **path)
 
 			while (path[i])
 			{
-				temp = malloc(strlen(path[i]) + strlen(command) + 1);
+				temp = malloc(strlen(path[i]) + strlen(command) + 3);
 				if (!temp)
 					exit(EXIT_FAILURE);
 				strcpy(temp, path[i]);
