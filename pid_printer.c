@@ -15,7 +15,6 @@ void pid_printer(char **token, char **path)
 		if (pid == 0)
 		{
 			command = strdup(token[0]);
-			execve(token[0], token, environ);
 			while (path[i])
 			{
 				execve(token[0], token, environ);
