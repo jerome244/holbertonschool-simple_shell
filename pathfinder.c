@@ -9,7 +9,7 @@ char **pathfinder(void)
 {
 	char **array = NULL;
 	char **environment = malloc(10000);
-	char *temp = NULL;
+	char *new, *temp = NULL;
 	int i, j = 0, num = 0;
 
 	while (environ[j])
@@ -55,8 +55,13 @@ char **pathfinder(void)
 	i = 0;
 	while (array[i])
 	{
-		array[i] = realloc(array[i], strlen(array[i]) + 2);
-		strcat(array[i], "/");
+		new = malloc(strlen(array[i]) + 2);
+		if (!new)
+			return NULL;
+		strcpy(new, array[i]);
+		strcat(new, "/");
+		free(array[i]);
+		array[i] = new;
 		i++;
 	}
 
