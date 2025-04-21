@@ -1,31 +1,36 @@
+
 #include "shell.h"
+
 /**
- * main - main function.
- * Return: always 0.
+ * main - main function
+ *
+ * Return: always 0
  */
+
 int main(void)
 {
-	char *buf = NULL;
-	size_t buf_size = 0;
-	int nread, i;
+	char *prompt, **token, **path;
+	int status, i = 0;
 
+	path = pathfinder();
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, "#cisfun$ ", 9);
-		nread = getline(&buf, &buf_size, stdin);
-		if (nread == -1)
+			write(1, ":) ", 3);
+		prompt = _getline();
+		if (!prompt)
 			break;
-		if (buf[nread - 1] == '\n')
-			buf[nread - 1] = '\0';
-		if (buf[0] == '\0')
+		token = tokenization(prompt, " \t\r\n");
+		free(prompt);
+		if (!*token)
+		{
+			free(token);
 			continue;
-		for (i = 0; buf[i]; i++)
-			if (is_space(buf[i]))
-				continue;
-		if (!is_empty_or_whitespace(buf))
-			pid_printer(buf);
+		}
+        pid_printer(token, path);
 	}
-	free(buf);
+	for (i = 0; *(path + i); i++)
+		free(*(path + i));
+	free(path);
 	return (0);
 }
