@@ -33,5 +33,6 @@ int main(void)
 	for (i = 0; *(path + i); i++)
 		free(*(path + i));
 	free(path);
+	free(buf);
 	return (0);
 }
