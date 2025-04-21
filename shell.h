@@ -6,11 +6,12 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/wait.h>
-#include <sys/types.h>
-#include <sys/stat.h>
 
-void pid_printer(char *buf);
-int is_space(char c);
-int is_empty_or_whitespace(char *str);
+extern char **environ;
+
+void pid_printer(char **token, char **path);
+char **tokenization(char *prompt, char *delim);
+char *_getline(void);
+char **pathfinder(void);
 
 #endif
