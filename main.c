@@ -6,7 +6,7 @@
  *
  * Return: always 0
  */
-
+char *buf = NULL;
 int main(void)
 {
 	char *prompt, **token, **path;
@@ -22,6 +22,7 @@ int main(void)
 			break;
 		token = tokenization(prompt, " \t\r\n");
 		free(prompt);
+		
 		if (!*token)
 		{
 			free(token);
