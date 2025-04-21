@@ -10,7 +10,7 @@
 int main(void)
 {
 	char *prompt, **token, **path;
-	int status, i = 0;
+	int i = 0;
 
 	path = pathfinder();
 	while (1)
