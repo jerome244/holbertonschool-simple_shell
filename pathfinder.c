@@ -23,43 +23,43 @@
  
 		 while (environment[j])
 		 {
-				 array = tokenization(environment[j], "=");
-				 if (!strcmp(*array, "PATH"))
-				 {
-						 if (!*(array + 1))
-								 break;
-						 temp = strdup(*(array + 1));
-						 for (i = 0; i < 2; i++)
-								 free(*(array + i));
-						 free(array);
-						 break;
-				 }
-				 for (i = 0; i < 2; i++)
-						 free(*(array + i));
+			 array = tokenization(environment[j], "=");
+			 if (!strcmp(*array, "PATH"))
+			 {
+				 if (!*(array + 1))
+				 break;
+				 temp = strdup(*(array + 1));
+				 for (i = 0; i < [i]; i++)
+					 free(array[i]);
 				 free(array);
-				 j++;
+				 break;
+			 }
+			 for (i = 0; i < 2; i++)
+				 free(*(array + i));
+			 free(array);
+			 j++;
 		 }
  
 		 array = tokenization(temp, ":");
 		 if (!array)
-				 return (NULL);
+			 return (NULL);
 		 i = 0;
 		 while (array[i])
 		 {
-				 new = malloc(strlen(array[i]) + 2);
-				 if (!new)
-						 return NULL;
-				 strcpy(new, array[i]);
-				 strcat(new, "/");
-				 free(array[i]);
-				 array[i] = new;
-				 i++;
+			 new = malloc(strlen(array[i]) + 2);
+			 if (!new)
+				 return NULL;
+			 strcpy(new, array[i]);
+			 strcat(new, "/");
+			 free(array[i]);
+			 array[i] = new;
+			 i++;
 		 }
  
 		 if (temp)
-				 free(temp);
+			 free(temp);
 		 for (i = 0; i < num; i++)
-				 free(environment[i]);
+			 free(environment[i]);
 		 free(environment);
 		 return (array);
  }
