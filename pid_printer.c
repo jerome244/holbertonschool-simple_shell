@@ -23,7 +23,7 @@ void pid_printer(char **token, char **path)
 			strcat(temp, command);
 			old_token = token[0];
 			token[0] = strdup(temp);
-			free(old_token;
+			free(old_token);
 			free(temp);
 			i++;
 		}
