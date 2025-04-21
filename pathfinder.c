@@ -8,7 +8,7 @@
 char **pathfinder(void)
 {
         char **path_token = NULL;
-        char **environment = malloc(10000);
+        char **environment;
         char *temp = NULL;
         int i, num = 0;
         int env_count = 0;
