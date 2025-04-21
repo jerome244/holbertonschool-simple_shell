@@ -7,7 +7,5 @@
 
 void _exit(int status)
 {
-	if (status == 0)
-		printf("OK\n");
         exit(status);
 }
