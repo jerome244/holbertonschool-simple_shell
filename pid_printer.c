@@ -1,31 +1,36 @@
 #include "shell.h"
-/**
- * pid_printer - check and print pid.
- * @buf: inputted string from user.
- */
-void pid_printer(char *buf)
+
+void pid_printer(char **token, char **path)
 {
 	pid_t pid;
-	int status;
-	char *argv[64];
-	char *token;
-	const char *delim = " \t\r\n";
+    int status;
+	char *temp, *command;
+    const char *delim = " \t\r\n";
 	int i = 0;
 
-	token = strtok(buf, delim);
-	while (token != NULL)
-	{
-		argv[i++] = token;
-		token = strtok(NULL, delim);
-	}
-	argv[i] = NULL;
 	pid = fork();
-	if (pid == 0)
-	{
-		execve(argv[0], argv, NULL);
-		perror("./shell: o such file or directory");
-		exit(EXIT_FAILURE);
-	}
-	else
-		wait(&status);
+		if (pid == 0)
+		{
+			command = strdup(token[0]);
+			execve(token[0], token, environ);
+
+			while (path[i])
+			{
+				execve(token[0], token, environ);
+				temp = malloc(strlen(path[i]) + strlen(command) + 1);
+				strcpy(temp, path[i]);
+				strcat(temp, command);
+				free(token[0]);
+				token[0] = strdup(temp);
+				free(temp);
+				i++;
+			}
+			printf("No such file or directory\n");
+			exit(EXIT_FAILURE);
+		}
+		else
+			wait(&status);
+		for (i = 0; *(token + i); i++)
+			free(*(token + i));
+		free(token);
 }
