@@ -6,14 +6,13 @@
 
 char *_getline(void)
 {
-	char *buffer = NULL;
 	size_t buf_size = 0;
 	int checker;
 
-	checker = getline(&buffer, &buf_size, stdin);
+	checker = getline(&buf, &buf_size, stdin);
 	if (checker == -1)
-		free(buffer);
+		free(buf);
 	else
-		return (buffer);
+		return (buf);
 	return (NULL);
 }
