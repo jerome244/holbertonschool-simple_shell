@@ -159,14 +159,14 @@ Implement the env built-in, that prints the current environment
 
 |File|Description|
 |---|---|
-|[AUTHORS](https://github.com/jerome244/holbertonschool-simple_shell/blob/master/AUTHORS)|Contributors in this repository|
-|[README.md](https://github.com/jerome244/holbertonschool-simple_shell/blob/master/README.md)|Information about this repository|
-|[_getline.c](https://github.com/jerome244/holbertonschool-simple_shell/blob/master/_getline.c)|Gets input and write it into line|
-|[main.c](https://github.com/jerome244/holbertonschool-simple_shell/blob/master/main.c)|Main function for run shell|
-|[tokenizer.c](https://github.com/jerome244/holbertonschool-simple_shell/blob/master/tokenizer.c)|For split and parse inputs|
-|[pathfinder.c](https://github.com/jerome244/holbertonschool-simple_shell/blob/master/pathfinder.c)|Takes environment variable PATH|
-|[man_1_simple_shell](https://github.com/jerome244/holbertonschool-simple_shell/blob/master/man_1_simple_shell)|Manual page of this version of Shell|
-|[shell.h](https://github.com/jerome244/holbertonschool-simple_shell/blob/master/shell.h)|Used libraries, functions prototypes|
+|[AUTHORS](https://github.com/jerome244/holbertonschool-simple_shell/blob/master/AUTHORS)|Contributors of this repository|
+|[README.md](https://github.com/jerome244/holbertonschool-simple_shell/blob/master/README.md)|Informations about this repository|
+|[_getline.c](https://github.com/jerome244/holbertonschool-simple_shell/blob/master/_getline.c)|Function to get user's input and write it into the buffer|
+|[main.c](https://github.com/jerome244/holbertonschool-simple_shell/blob/master/main.c)|Main function of this application|
+|[tokenizer.c](https://github.com/jerome244/holbertonschool-simple_shell/blob/master/tokenizer.c)|For splitting and parsing the user's input into an array|
+|[pathfinder.c](https://github.com/jerome244/holbertonschool-simple_shell/blob/master/pathfinder.c)|Find a function inside the library of environment variables also called the PATH|
+|[man_1_simple_shell](https://github.com/jerome244/holbertonschool-simple_shell/blob/master/man_1_simple_shell)|Manual page of this of this application|
+|[shell.h](https://github.com/jerome244/holbertonschool-simple_shell/blob/master/shell.h)|List of used libraries and functions prototypes|
 
 ## Flowchart
 
