@@ -3,7 +3,7 @@
 # C - Simple Shell Group Project
 Team: Jerome TRAN.
 
-## HSH: The Holberton SHELL
+## INTRODUCTION
 A shell is a user interface that provides access to an operating system's services. This same program can interpret and execute commands.
 
 ## GENERAL
@@ -71,10 +71,6 @@ The `wait()` can be used for this task.
 - **What is `EOF` / “end-of-file”?**
 
 It is a key-word foundable in a file or a stream of data that indicates that there is no more data to be read.
-
-## Getting HSH
-In order to install the shell and get benefits of it's features you need to clone the current project, and compile it.
-You need to make sure that this shell tested and garantees work based on `gcc-4.8` and the `C90` standard.
 
 ## Requirements
 
