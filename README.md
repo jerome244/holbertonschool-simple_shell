@@ -4,7 +4,7 @@
 Team: Jerome TRAN.
 
 ## INTRODUCTION
-A shell is a user interface that provides access to an operating system's services. This same program can interpret and execute commands.
+A shell is an user interface that provides access to an operating system's services. This same program can interpret and execute commands.
 
 ## GENERAL
 - **Who designed and implemented the original Unix operating system:**
