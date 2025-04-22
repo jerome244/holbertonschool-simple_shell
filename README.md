@@ -165,7 +165,7 @@ Implement the env built-in, that prints the current environment
 |[main.c](https://github.com/jerome244/holbertonschool-simple_shell/blob/master/main.c)|Main function of this application|
 |[tokenizer.c](https://github.com/jerome244/holbertonschool-simple_shell/blob/master/tokenizer.c)|For splitting and parsing the user's input into an array|
 |[pathfinder.c](https://github.com/jerome244/holbertonschool-simple_shell/blob/master/pathfinder.c)|Find a function inside the library of environment variables also called the PATH|
-|[man_1_simple_shell](https://github.com/jerome244/holbertonschool-simple_shell/blob/master/man_1_simple_shell)|Manual page of this of this application|
+|[man_1_simple_shell](https://github.com/jerome244/holbertonschool-simple_shell/blob/master/man_1_simple_shell)|Manual page of this application|
 |[shell.h](https://github.com/jerome244/holbertonschool-simple_shell/blob/master/shell.h)|List of used libraries and functions prototypes|
 
 ## Flowchart
