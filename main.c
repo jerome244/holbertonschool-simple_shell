@@ -8,7 +8,6 @@
 int main(void)
 {
 	char *prompt = NULL, **token = NULL, **path = NULL;
-	int i = 0;
 
 	path = pathfinder();
 	if (!path)
@@ -42,7 +41,7 @@ int main(void)
 				exit(0);
 		}
 
-		pid_printer(token, path);
+		program_launcher(token, path);
 	}
 
 	free_array(path);

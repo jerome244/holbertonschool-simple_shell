@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * pid_printer - launches a program from PATH directories
+ * program_launcher - launches a program from PATH directories
  * @token: command and arguments (tokenized)
  * @path: directories from PATH variable (each ends with '/')
  */
 
-void pid_printer(char **token, char **path)
+void program_launcher(char **token, char **path)
 {
 	pid_t pid;
 	char *temp = NULL, *command = NULL;
