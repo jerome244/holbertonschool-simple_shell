@@ -25,9 +25,15 @@ int main(void)
         token = tokenization(prompt, " \t\r\n");
         free(prompt);
 
-        if (*token)
+         if (*token)
+        {
+            if (strcmp(token[0], "exit") == 0)
+            {
+                free_array(token);
+                exit(0);
+            }
             program_launcher(token, path);
-
+        }
         free_array(token);
     }
 
