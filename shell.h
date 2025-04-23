@@ -17,5 +17,7 @@ void free_array(char **array);
 void print_env(void);
 int cd(char **token);
 char *_getenv_value(const char *name);
+int unsetenv_builtin(char **token);
+int setenv_builtin(char **token);
 
 #endif
