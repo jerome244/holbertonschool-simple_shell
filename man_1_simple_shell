@@ -24,7 +24,7 @@ Exit the shell.
 Print the current environment variables.
 
 .SH USAGE
-To start the simple shell, run the compiled binary:
+To start the simple shell, run the following command in your terminal:
 
 .B ./hsh
 
