@@ -12,11 +12,11 @@ int setenv_builtin(char **token)
 {
     if (!token[1])
     {
-        write(STDERR_FILENO, "Usage: setenv VARIABLE VALUE\n", 30);
+        write(STDERR_FILENO, "Usage: setenv VARIABLE [VALUE]\n", 31);
         return (1);
     }
 
-    if (setenv(token[1], token[2] ? token[2] : "", 1) == -1)
+    if (_setenv(token[1], token[2] ? token[2] : "", 1) == -1)
     {
         perror("setenv");
         return (1);

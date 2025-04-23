@@ -19,5 +19,6 @@ int cd(char **token);
 char *_getenv_value(const char *name);
 int unsetenv_builtin(char **token);
 int setenv_builtin(char **token);
+int _setenv(const char *name, const char *value, int overwrite);
 
 #endif
