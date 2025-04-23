@@ -31,10 +31,7 @@ int main(void)
             {
                 free_array(token);
                 free_array(path);
-                if (isatty(STDIN_FILENO))
-                    exit(0);
-                else
-                    exit(2);
+                exit(0);
             }
 
             program_launcher(token, path);
