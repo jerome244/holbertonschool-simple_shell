@@ -1,11 +1,11 @@
 #include "shell.h"
 
-/** pid_printer - launch app from path file.
+/** program_launcher - launch app from path file.
  * @token: string token.
  * @path: array tokenized of the path.
  */
 
-void pid_printer(char **token, char **path)
+void program_launcher(char **token, char **path)
 {
 	pid_t pid;
 	char *temp, *command;

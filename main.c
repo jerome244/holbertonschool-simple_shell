@@ -1,35 +1,37 @@
 #include "shell.h"
 
 /**
- * main - main function
+ * main - main function of the shell program
  *
  * Return: always 0
  */
-
 int main(void)
 {
-	char *prompt, **token, **path;
-	int i = 0;
+    char *prompt, **token, **path;
 
-	path = pathfinder();
-	while (1)
-	{
-		if (isatty(STDIN_FILENO))
-			write(1, ":) ", 3);
-		prompt = _getline();
-		if (!prompt)
-			break;
-		token = tokenization(prompt, " \t\r\n");
-		free(prompt);
-		if (!*token)
-		{
-			free(token);
-			continue;
-		}
-        pid_printer(token, path);
-	}
-	for (i = 0; *(path + i); i++)
-		free(*(path + i));
-	free(path);
-	return (0);
+    path = pathfinder();
+    if (!path)
+        return (1);
+
+    while (1)
+    {
+        if (isatty(STDIN_FILENO))
+            write(1, ":) ", 3);
+
+        prompt = _getline();
+        if (!prompt)
+            break;
+
+        token = tokenization(prompt, " \t\r\n");
+        free(prompt);
+
+        if (*token)
+            program_launcher(token, path);
+
+        free_array(token);
+    }
+
+    free_array(path);
+
+    return (0);
 }
