@@ -1,7 +1,5 @@
 #include "shell.h"
 
-extern char **environ;
-
 /**
  * main - main function of the shell
  * Return: always 0
