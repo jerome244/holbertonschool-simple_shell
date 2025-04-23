@@ -32,7 +32,10 @@ int main(void)
 		{
 			free_array(token);
 			free_array(path);
-			exit(0);
+			if (isatty(STDIN_FILENO))
+				exit(0);
+			else
+				exit(2);
 		}
 
 		if (!strcmp(token[0], "env"))
