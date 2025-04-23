@@ -2,24 +2,21 @@
 
 /**
  * main - main function of the shell
- *
  * Return: always 0
  */
 int main(void)
 {
-	char *prompt = NULL, **token = NULL, **path = NULL;
+	char *prompt = NULL, **token = NULL, **path = pathfinder();
 
-	path = pathfinder();
 	if (!path)
-		return (1); /* Exit if path couldn't be built */
+		return (1);
 
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "$ ", 2);
 
-		prompt = _getline();
-		if (!prompt)
+		if (!(prompt = _getline()))
 			break;
 
 		token = tokenization(prompt, " \t\r\n");
@@ -31,14 +28,19 @@ int main(void)
 			continue;
 		}
 
-		if (strcmp(token[0], "exit") == 0)
+		if (!strcmp(token[0], "exit"))
 		{
+			int status = token[1] ? 2 : 0;
 			free_array(token);
 			free_array(path);
-			if (token[1] != NULL)
-				exit(2);
-			else
-				exit(0);
+			exit(status);
+		}
+
+		if (!strcmp(token[0], "env"))
+		{
+			print_env();
+			free_array(token);
+			continue;
 		}
 
 		program_launcher(token, path);
