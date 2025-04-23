@@ -7,30 +7,36 @@ simple_shell \- a simple UNIX command line interpreter
 [\fIcommand\fR]
 
 .SH DESCRIPTION
-The \fBsimple_shell\fR is a basic UNIX command line interpreter developed in context of HOLBERTON's Simple Shell Project. This application is able to interpret user's commands and execute them accordingly.
+The \fBsimple_shell\fR is a basic UNIX command line interpreter developed as part of Holberton's Simple Shell Project. It reads user input and executes corresponding commands, replicating some behaviors of standard UNIX shells.
 
 .SH OPTIONS
-The \fBsimple_shell\fR does not support any command-line options.
+\fBsimple_shell\fR does not accept any command-line options.
 
 .SH COMMANDS
-The following commands are supported by the shell:
+The following built-in commands are supported:
 
-.BR exit
-For exiting the program.
+.TP
+.B exit
+Exit the shell.
 
-.BR env
-For printing the current environment.
+.TP
+.B env
+Print the current environment variables.
 
 .SH USAGE
-To start the simple shell, run the following command in your terminal:
+To start the simple shell, run the compiled binary:
 
-.BR ./hsh
+.B ./hsh
+
+Type a command and press Enter. The shell will execute it if found in the system’s \fBPATH\fR.
 
 .SH AUTHORS
 Jerome TRAN <10485@holbertonstudents.com>
 
 .SH SEE ALSO
-intro(1), bash(1)
+.BR bash(1),
+.BR sh(1),
+.BR execve(2)
 
 .SH COPYRIGHT
-This manual page was written for the Simple Shell Project by Jerome TRAN.
+This manual page was written for the Simple Shell Project by Jerome TRAN. All rights reserved.
