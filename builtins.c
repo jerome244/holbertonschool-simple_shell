@@ -22,16 +22,6 @@ int setenv_builtin(char **token)
         perror("setenv");
         return (1);
     }
-    if (value)
-    {
-        dprintf(STDOUT_FILENO, "Variable %s set to: %s\n", token[1], value);
-    }
-    else
-    {
-        write(STDERR_FILENO, "setenv: Failed to set the variable\n", 35);
-        return (1);
-    }
-
     return (0);
 }
 
