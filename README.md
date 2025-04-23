@@ -1,4 +1,6 @@
-<p align="center"><img src="https://github.com/jerome244/holbertonschool-simple_shell/blob/main/img/images.png"></p>
+<p align="center">
+  <img src="https://github.com/jerome244/holbertonschool-simple_shell/blob/main/img/images.png?raw=true" alt="Shell Banner" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+</p>
 
 # C - Simple Shell Group Project
 Team: Jerome TRAN.
