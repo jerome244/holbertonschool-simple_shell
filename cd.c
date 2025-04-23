@@ -13,7 +13,7 @@ int cd(char **token)
         if (!dir)
         {
             /* Avoid printing the error message directly */
-            return (1);  // Return failure quietly if HOME is not set
+            return (1);
         }
     }
 
@@ -42,22 +42,4 @@ int cd(char **token)
         setenv("PWD", cwd, 1);
 
     return (0);
-}
-
-char *_getenv_value(const char *name)
-{
-    int i;
-    size_t len;
-
-    if (!name || !*name)
-        return (NULL);
-
-    len = strlen(name);
-    for (i = 0; environ[i]; i++)
-    {
-        /* Match name=... format exactly */
-        if (strncmp(environ[i], name, len) == 0 && environ[i][len] == '=')
-            return (environ[i] + len + 1);
-    }
-    return (NULL);
 }
