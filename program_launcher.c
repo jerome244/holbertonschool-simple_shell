@@ -30,7 +30,7 @@ int program_launcher(char **token, char **path)
 			printf("No such file or directory\n");
 			exit(2);
 		}
-		else if
+		else if (pid > 0)
 		{
 			wait(&status);
 			return (0);
