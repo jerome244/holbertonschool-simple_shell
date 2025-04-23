@@ -1,65 +1,37 @@
 #include "shell.h"
 
 /**
- * pathfinder - function to locate file in the path
- * Return: array
+ * pathfinder - function to locate file paths in the PATH environment variable
+ * Return: array of directories in the PATH, each ending with a '/'
  */
 
 char **pathfinder(void)
 {
-	char **array = NULL;
-	char **environment = malloc(sizeof(char *) * 64);
-	char *new, *temp = NULL;
-	int i, j = 0, num = 0;
+	char *path_env, *temp, **array;
+	int i;
+	char *new;
 
-	while (environ[j])
-	{
-		environment[j] = malloc(strlen(environ[j]) + 1);
-		strcpy(environment[j], environ[j]);
-		j++;
-		num++;
-	}
-	j = 0;
+	path_env = getenv("PATH");
+	if (!path_env)
+		return (NULL);
 
-	while (environment[j])
-	{
-		array = tokenization(environment[j], "=");
-		if (!strcmp(*array, "PATH"))
-		{
-			if (!*(array + 1))
-				break;
-			temp = strdup(*(array + 1));
-			for (i = 0; i < 2; i++)
-				free(*(array + i));
-			free(array);
-			break;
-		}
-		for (i = 0; i < 2; i++)
-			free(*(array + i));
-		free(array);
-		j++;
-	}
-	
-	array = tokenization(temp, ":");
+	temp = strdup(path_env); /* Duplicate to avoid modifying original */
+	if (!temp)
+		return (NULL);
+
+	array = tokenization(temp, ":"); /* Split by ':' */
+	free(temp);
 	if (!array)
 		return (NULL);
-	i = 0;
-	while (array[i])
+	for (i = 0; array[i]; i++)
 	{
-		new = malloc(strlen(array[i]) + 2);
+		new = malloc(strlen(array[i]) + 2);  /* +1 for '/' and +1 for '\0' */
 		if (!new)
-			return NULL;
+			return (NULL);
 		strcpy(new, array[i]);
 		strcat(new, "/");
 		free(array[i]);
 		array[i] = new;
-		i++;
 	}
-
-	if (temp)
-		free(temp);
-	for (i = 0; i < num; i++)
-		free(environment[i]);
-	free(environment);
 	return (array);
 }
