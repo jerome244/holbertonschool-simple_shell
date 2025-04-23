@@ -15,7 +15,8 @@ char *_getenv_value(const char *name)
 
 	for (i = 0; environ[i]; i++)
 	{
-		if (strncmp(environ[i], name, len) == 0 && environ[i][len] == '=')
+		if (strstr(environ[i], name))
+    printf("Match found: %s\n", environ[i]);
 		return (environ[i] + len + 1);
 	}
 	return (NULL);
