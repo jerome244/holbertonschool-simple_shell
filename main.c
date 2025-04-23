@@ -8,7 +8,7 @@
  int main(void)
  {
   	char *prompt = NULL, **token = NULL, **path = pathfinder();
-  	int last_status = 0;
+  	int last_status = 0, i;
 
   	if (!path)
   		return (1);
@@ -29,6 +29,21 @@
   			free_array(token);
   			continue;
   		}
+		for (i = 0; token[i]; i++)
+{
+    if (strcmp(token[i], "$?") == 0)
+    {
+        char status_str[12];
+        sprintf(status_str, "%d", last_status);
+        free(token[i]);
+        token[i] = strdup(status_str);
+        if (!token[i])
+        {
+            perror("strdup");
+        }
+    }
+}
+
 
   		if (!strcmp(token[0], "exit"))
   		{
@@ -43,7 +58,7 @@
   			free_array(token);
   			continue;
   		}
-		else if (!strcmp(token[0], "cd"))
+		if (!strcmp(token[0], "cd"))
  			last_status = cd(token);
  		else if (!strcmp(token[0], "setenv"))
             		last_status = setenv_builtin(token);
