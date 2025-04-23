@@ -14,5 +14,6 @@ char **tokenization(char *prompt, char *delim);
 char *_getline(void);
 char **pathfinder(void);
 void free_array(char **array);
+void print_env(void);
 
 #endif
