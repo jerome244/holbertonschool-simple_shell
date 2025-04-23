@@ -1,64 +1,43 @@
 #include "shell.h"
 
-/**
- * program_launcher - launches a program from PATH directories
- * @token: command and arguments (tokenized)
- * @path: directories from PATH variable (each ends with '/')
- */
-
 void program_launcher(char **token, char **path)
 {
-	pid_t pid;
-	char *temp = NULL, *command = NULL;
-	int status, i = 0;
+	pid_t pid = fork();
+	char *cmd = NULL, *temp = NULL;
+	int i, status;
 
-	pid = fork();
-	if (pid == 0)
+	if (pid == 0) /* Child process */
 	{
-		command = strdup(token[0]);
-		if (!command)
-			exit(EXIT_FAILURE);
+		cmd = strdup(token[0]);
+		if (!cmd) exit(EXIT_FAILURE);
 
-		execve(token[0], token, environ);
-		/* Try each path directory */
-		while (path[i])
+		execve(cmd, token, environ);
+
+		for (i = 0; path[i]; i++)
 		{
-			free(token[0]);
-			temp = malloc(strlen(path[i]) + strlen(command) + 1);
-			if (!temp)
-			{
-				free(command);
-				exit(EXIT_FAILURE);
-			}
-			strcpy(temp, path[i]);
-			strcat(temp, command);
+			temp = malloc(strlen(path[i]) + strlen(cmd) + 1);
+			if (!temp) break;
 
+			strcpy(temp, path[i]);
+			strcat(temp, cmd);
+			free(token[0]);
 			token[0] = strdup(temp);
 			free(temp);
 
-			if (!token[0])
-			{
-				free(command);
-				exit(EXIT_FAILURE);
-			}
-
+			if (!token[0]) break;
 			execve(token[0], token, environ);
-			i++;
 		}
 
-		/* Command not found in any path */
-		fprintf(stderr, "%s: command not found\n", command);
-		free(command);
-		for (i = 0; token[i]; i++)
-			free(token[i]);
+		fprintf(stderr, "%s: command not found\n", cmd);
+		free(cmd);
+		for (i = 0; token[i]; i++) free(token[i]);
 		free(token);
 		exit(EXIT_FAILURE);
 	}
-	else
+	else if (pid > 0) /* Parent process */
 	{
 		wait(&status);
-		for (i = 0; token[i]; i++)
-			free(token[i]);
+		for (i = 0; token[i]; i++) free(token[i]);
 		free(token);
 	}
 }
