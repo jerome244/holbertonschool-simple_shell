@@ -11,10 +11,7 @@ int cd(char **token)
     {
         dir = _getenv_value("HOME");
         if (!dir)
-        {
-            /* Avoid printing the error message directly */
             return (1);
-        }
     }
 
     else if (strcmp(dir, "-") == 0)
@@ -41,5 +38,10 @@ int cd(char **token)
     if (getcwd(cwd, sizeof(cwd)) != NULL)
         setenv("PWD", cwd, 1);
 
+    else
+    {
+        perror("getcwd");
+        return (1);
+    }
     return (0);
 }
