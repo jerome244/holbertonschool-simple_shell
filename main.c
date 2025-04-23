@@ -44,6 +44,10 @@ int main(void)
  		}
 		else if (!strcmp(token[0], "cd"))
 			last_status = cd(token);
+		else if (!strcmp(token[0], "setenv"))
+			last_status = builtin_setenv(token);
+		else if (!strcmp(token[0], "unsetenv"))
+			last_status = builtin_unsetenv(token);
 		else
 			last_status = program_launcher(token, path);
  	}
