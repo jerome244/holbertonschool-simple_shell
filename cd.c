@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * builtin_cd - handles the 'cd' built-in command
+ * cd - handles the 'cd' built-in command
  * @token: tokenized user input
  * Return: 0 on success, 1 on failure
  */
@@ -12,32 +12,33 @@ int cd(char **token)
 
     if (!dir || strcmp(dir, "~") == 0)
     {
-        dir = getenv("HOME");
+        dir = _getenv_value("HOME");
         if (!dir)
         {
-            fprintf(stderr, "cd: HOME not set\n");
+            write(STDERR_FILENO, "cd: HOME not set\n", 17);
             return (1);
         }
     }
     else if (strcmp(dir, "-") == 0)
     {
-        prev_dir = getenv("OLDPWD");
+        prev_dir = _getenv_value("OLDPWD");
         if (!prev_dir)
-	{
-            fprintf(stderr, "cd: OLDPWD not set\n");
+        {
+            write(STDERR_FILENO, "cd: OLDPWD not set\n", 20);
             return (1);
         }
-        printf("%s\n", prev_dir);
- 	dir = prev_dir;
+        dir = prev_dir;
+        write(STDOUT_FILENO, dir, strlen(dir));
+        write(STDOUT_FILENO, "\n", 1);
     }
 
-     if (chdir(dir) != 0)
+    if (chdir(dir) != 0)
     {
         perror("cd");
-	return (1);
+        return (1);
     }
 
-    setenv("OLDPWD", getenv("PWD"), 1);
+    setenv("OLDPWD", _getenv_value("PWD"), 1);
 
     if (getcwd(cwd, sizeof(cwd)) != NULL)
         setenv("PWD", cwd, 1);
