@@ -34,7 +34,7 @@ int main(void)
     			exit_status = last_status;
 
     			if (token[1])
-        			exit_status = _atoi(token[1]);
+        			exit_status = str_to_int(token[1]);
     			free_array(token);
     			free_array(path);
     			exit(exit_status);

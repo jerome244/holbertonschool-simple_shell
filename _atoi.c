@@ -1,11 +1,11 @@
 #include "shell.h"
 
 /**
- * _atoi - Convert a string to an integer
+ * str_to_int - Convert a string to an integer
  * @s: The string to convert
  * Return: The integer value, or 0 if no valid number
  */
-int _atoi(char *s)
+int str_to_int(char *s)
 {
     int i = 0, result = 0, sign = 1;
 
