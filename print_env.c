@@ -6,17 +6,18 @@
  
  void print_env(void)
  {
- 	int i;
+ 	int i = 0;
  
 	if (!environ)
         	return;
 
  	while (environ[i])
-    {
-        if (environ[i]) {
-            write(STDOUT_FILENO, environ[i], strlen(environ[i]));
-            write(STDOUT_FILENO, "\n", 1);
-        }
-        i++;
-    }
- }
+    	{
+        	if (environ[i] != NULL) 
+		{
+            		write(STDOUT_FILENO, environ[i], strlen(environ[i]));
+            		write(STDOUT_FILENO, "\n", 1);
+        	}
+        	i++;
+   	}
+}
