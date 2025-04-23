@@ -31,9 +31,12 @@ int main(void)
 
 		if (!strcmp(token[0], "exit"))
 		{
-			free_array(token);
-			free_array(path);
-			exit(last_status);
+    			free_array(token);
+    			free_array(path);
+    			if (isatty(STDIN_FILENO))
+        			exit(last_status);
+    			else
+        			exit(2);
 		}
 
 		if (!strcmp(token[0], "env"))
