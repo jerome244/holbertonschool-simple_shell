@@ -1,5 +1,7 @@
 #include "shell.h"
 
+extern char **environ;
+
 /**
  * main - main function of the shell
  * Return: always 0
@@ -30,10 +32,9 @@ int main(void)
 
 		if (!strcmp(token[0], "exit"))
 		{
-			int status = token[1] ? 2 : 0;
 			free_array(token);
 			free_array(path);
-			exit(status);
+			exit(0);
 		}
 
 		if (!strcmp(token[0], "env"))
