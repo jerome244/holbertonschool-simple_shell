@@ -1,18 +1,13 @@
 #include "shell.h"
 
-/**
-  * program_launcher - launches a program from PATH directories
-  * @token: command and arguments (tokenized)
-  * @path: directories from PATH variable (each ends with '/')
-  */
-
-void program_launcher(char **token, char **path)
+int program_launcher(char **token, char **path)
 {
-	pid_t pid = fork();
+	pid_t pid;
+	int status = 0, i = 0;
 	char *cmd = NULL, *temp = NULL;
-	int i, status;
 
-	if (pid == 0) /* Child process */
+	pid = fork();
+	if (pid == 0)
 	{
 		cmd = strdup(token[0]);
 		if (!cmd)
@@ -20,7 +15,7 @@ void program_launcher(char **token, char **path)
 
 		execve(cmd, token, environ);
 
-		for (i = 0; path[i]; i++) /* Try PATH directories */
+		for (i = 0; path[i]; i++)
 		{
 			temp = malloc(strlen(path[i]) + strlen(cmd) + 1);
 			if (!temp)
@@ -42,12 +37,15 @@ void program_launcher(char **token, char **path)
 		free(cmd);
 		for (i = 0; token[i]; i++) free(token[i]);
 		free(token);
-		exit(EXIT_FAILURE);
+		exit(127);
 	}
-	else if (pid > 0) /* Parent process */
+	else if (pid > 0)
 	{
 		wait(&status);
 		for (i = 0; token[i]; i++) free(token[i]);
 		free(token);
+		return WEXITSTATUS(status);
 	}
+
+	return 1;
 }

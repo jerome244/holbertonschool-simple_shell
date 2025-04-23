@@ -7,6 +7,7 @@
 int main(void)
 {
 	char *prompt = NULL, **token = NULL, **path = pathfinder();
+	int last_status = 0;
 
 	if (!path)
 		return (1);
@@ -32,9 +33,7 @@ int main(void)
 		{
 			free_array(token);
 			free_array(path);
-			exit(0);
-			if (!isatty(STDIN_FILENO))
-				exit(2);
+			exit(last_status);
 		}
 
 		if (!strcmp(token[0], "env"))
@@ -44,7 +43,7 @@ int main(void)
 			continue;
 		}
 
-		program_launcher(token, path);
+		last_status = program_launcher(token, path);
 	}
 
 	free_array(path);
