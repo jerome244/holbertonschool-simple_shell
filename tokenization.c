@@ -24,7 +24,7 @@ char **tokenization(char *prompt, char *delim)
 		if (!new_token[i])
 		{
 			free(new_token[i]);
-			exit(99);
+			exit(1);
 		}
 		i++;
 		token = strtok(NULL, delim);

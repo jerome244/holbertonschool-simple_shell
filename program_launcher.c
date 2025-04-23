@@ -17,7 +17,7 @@ int program_launcher(char **token, char **path)
  	{
  		cmd = strdup(token[0]);
  		if (!cmd)
- 			exit(EXIT_FAILURE);
+ 			exit(1);
 
  		execve(cmd, token, environ);
 		for (i = 0; path[i]; i++)
@@ -40,16 +40,18 @@ int program_launcher(char **token, char **path)
 
  		fprintf(stderr, "%s: command not found\n", cmd);
  		free(cmd);
- 		for (i = 0; token[i]; i++) free(token[i]);
+ 		for (i = 0; token[i]; i++)
+			free(token[i]);
  		free(token);
-		exit(127);
+		exit(1);
  	}
 	else if (pid > 0)
  	{
  		wait(&status);
- 		for (i = 0; token[i]; i++) free(token[i]);
+ 		for (i = 0; token[i]; i++)
+			free(token[i]);
  		free(token);
- 		return WEXITSTATUS(status);
+ 		return (WEXITSTATUS(status));
  	}
- 	return 1;
+ 	return (1);
  }

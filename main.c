@@ -33,7 +33,7 @@
  		{
  			free_array(token);
  			free_array(path);
-						exit(last_status);
+			exit(last_status);
  		}
 
  		if (!strcmp(token[0], "env"))
