@@ -47,6 +47,7 @@ int main(void)
 		}
 
 		last_status = program_launcher(token, path);
+		free_array(token);
 	}
 
 	free_array(path);
