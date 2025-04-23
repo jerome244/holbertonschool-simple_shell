@@ -38,6 +38,7 @@ int main(void)
         }
 
         free_array(token);
+	token = NULL;
     }
 
     free_array(path);

@@ -1,21 +1,13 @@
 #include "shell.h"
 
-/**
- * free_array - Frees an array of strings
- * @array: Array of strings to be freed
- */
-void free_array(char **array)
+void free_array(char **arr)
 {
-    int i = 0;
+    int i;
 
-    if (!array)
+    if (!arr)
         return;
 
-    while (array[i])
-    {
-        free(array[i]);
-        i++;
-    }
-
-    free(array);
+    for (i = 0; arr[i]; i++)
+        free(arr[i]);
+    free(arr);
 }
