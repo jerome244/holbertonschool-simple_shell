@@ -23,7 +23,7 @@
 
   		token = tokenization(prompt, " \t\r\n");
   		free(prompt);
-
+		free_array(token);
   		if (!token || !*token)
   		{
   			free_array(token);
