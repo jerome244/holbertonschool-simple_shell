@@ -32,7 +32,4 @@ void program_launcher(char **token, char **path)
 		}
 		else
 			wait(&status);
-		for (i = 0; *(token + i); i++)
-			free(*(token + i));
-		free(token);
 }
