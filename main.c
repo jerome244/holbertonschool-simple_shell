@@ -37,9 +37,9 @@ int main(void)
 			free_array(token);
 			free_array(path);
 			if (token[1] != NULL)
-				_exit(2);
+				exit(2);
 			else
-				_exit(0);
+				exit(0);
 		}
 
 		pid_printer(token, path);
