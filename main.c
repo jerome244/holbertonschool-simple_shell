@@ -32,9 +32,8 @@ int main(void)
 		{
 			free_array(token);
 			free_array(path);
-			if (isatty(STDIN_FILENO))
-				exit(0);
-			else
+			exit(0);
+			if (!isatty(STDIN_FILENO))
 				exit(2);
 		}
 
