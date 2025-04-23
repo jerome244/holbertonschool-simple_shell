@@ -10,13 +10,13 @@ extern char **environ;
  */
 int setenv_builtin(char **token)
 {
-    if (!token[1] || !token[2])
+    if (!token[1])
     {
         write(STDERR_FILENO, "Usage: setenv VARIABLE VALUE\n", 30);
         return (1);
     }
 
-    if (setenv(token[1], token[2], 1) == -1)
+    if (setenv(token[1], token[2] ? token[2] : "", 1) == -1)
     {
         perror("setenv");
         return (1);
