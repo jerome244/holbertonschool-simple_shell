@@ -47,6 +47,8 @@
  			last_status = cd(token);
  		else if (!strcmp(token[0], "setenv"))
             		last_status = setenv_builtin(token);
+		else if (!strcmp(token[0], "unsetenv"))
+    			last_status = unsetenv_builtin(token);
 		else
  			last_status = program_launcher(token, path);
   	}
