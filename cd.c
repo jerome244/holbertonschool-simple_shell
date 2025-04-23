@@ -5,6 +5,7 @@
  * @token: tokenized user input
  * Return: 0 on success, 1 on failure
  */
+extern char **environ;
 int cd(char **token)
 {
     char *dir = token[1], cwd[1024];
