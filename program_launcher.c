@@ -5,7 +5,7 @@
  * @path: array tokenized of the path.
  */
 
-void program_launcher(char **token, char **path)
+int program_launcher(char **token, char **path)
 {
 	pid_t pid;
 	char *temp, *command;
@@ -28,8 +28,16 @@ void program_launcher(char **token, char **path)
 				i++;
 			}
 			printf("No such file or directory\n");
-			exit(EXIT_FAILURE);
+			exit(2);
+		}
+		else if
+		{
+			wait(&status);
+			return (0);
 		}
 		else
-			wait(&status);
+		{
+			perror("fork failed");
+			return (2);
+		}
 }

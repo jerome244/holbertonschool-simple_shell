@@ -8,6 +8,7 @@
 int main(void)
 {
     char *prompt, **token, **path;
+    int status;
 
     path = pathfinder();
     if (!path)
@@ -34,7 +35,7 @@ int main(void)
                 exit(0);
             }
 
-            program_launcher(token, path);
+            status = program_launcher(token, path);
         }
 
         free_array(token);
