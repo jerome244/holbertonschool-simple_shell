@@ -10,7 +10,6 @@ extern char **environ;
  */
 int setenv_builtin(char **token)
 {
-	char *value = _getenv_value(token[1]);
     if (!token[1] || !token[2])
     {
         write(STDERR_FILENO, "Usage: setenv VARIABLE VALUE\n", 28);
