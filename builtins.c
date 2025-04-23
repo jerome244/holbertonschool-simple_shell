@@ -21,6 +21,7 @@ int setenv_builtin(char **token)
         perror("setenv");
         return (1);
     }
+    write(STDOUT_FILENO, "OK\n", 3);
     return (0);
 }
 

@@ -8,9 +8,15 @@
  {
  	int i;
  
- 	for (i = 0; environ[i]; i++)
- 	{
- 		if (environ[i])
-			printf("%s\n", environ[i]);
- 	}
+	if (!environ)
+        	return;
+
+ 	while (environ[i])
+    {
+        if (environ[i]) {
+            write(STDOUT_FILENO, environ[i], strlen(environ[i]));
+            write(STDOUT_FILENO, "\n", 1);
+        }
+        i++;
+    }
  }
