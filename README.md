@@ -1,5 +1,6 @@
 <p align="center">
-  <img src="https://github.com/jerome244/holbertonschool-simple_shell/blob/main/img/images.png"></p>
+  <img src="https://github.com/jerome244/holbertonschool-simple_shell/blob/main/img/images.png?raw=true">
+</p>
 
 # C - Simple Shell Group Project
 Team: Jerome TRAN.
