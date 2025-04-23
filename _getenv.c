@@ -1,23 +1,20 @@
 #include "shell.h"
 
-extern char **environ;
-
-/**
- * _getenv_value - manually gets an environment variable value from environ
- * @name: name of the environment variable
- * Return: pointer to the value, or NULL if not found
- */
-
 char *_getenv_value(const char *name)
 {
 	int i;
-	size_t len = strlen(name);
+	size_t len;
 
+	if (!name || !*name)
+		return (NULL);
+
+	len = strlen(name);
 	for (i = 0; environ[i]; i++)
 	{
-		if (strstr(environ[i], name))
-    printf("Match found: %s\n", environ[i]);
-		return (environ[i] + len + 1);
+		/* Match name=... format exactly */
+		if (strncmp(environ[i], name, len) == 0 && environ[i][len] == '=')
+			return (environ[i] + len + 1);
 	}
 	return (NULL);
 }
+
