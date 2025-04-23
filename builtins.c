@@ -10,6 +10,7 @@ extern char **environ;
  */
 int setenv_builtin(char **token)
 {
+	char *value = _getenv_value(token[1]);
     if (!token[1] || !token[2])
     {
         write(STDERR_FILENO, "Usage: setenv VARIABLE VALUE\n", 28);
@@ -19,6 +20,15 @@ int setenv_builtin(char **token)
     if (setenv(token[1], token[2], 1) == -1)
     {
         perror("setenv");
+        return (1);
+    }
+    if (value)
+    {
+        dprintf(STDOUT_FILENO, "Variable %s set to: %s\n", token[1], value);
+    }
+    else
+    {
+        write(STDERR_FILENO, "setenv: Failed to set the variable\n", 35);
         return (1);
     }
 
