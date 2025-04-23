@@ -15,5 +15,7 @@ char *_getline(void);
 char **pathfinder(void);
 void free_array(char **array);
 void print_env(void);
+int cd(char **token);
+char *_getenv_value(const char *name);
 
 #endif

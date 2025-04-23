@@ -1,11 +1,11 @@
 #include "shell.h"
- 
- /**
-  * main - main function of the shell
-  * Return: always 0
-  */
- int main(void)
- {
+
+/**
+ * main - main function of the shell
+ * Return: always 0
+ */
+int main(void)
+{
  	char *prompt = NULL, **token = NULL, **path = pathfinder();
  	int last_status = 0;
  
@@ -42,9 +42,12 @@
  			free_array(token);
  			continue;
  		}
- 	last_status = program_launcher(token, path);
+		else if (!strcmp(token[0], "cd"))
+			last_status = cd(token);
+		else
+			last_status = program_launcher(token, path);
  	}
 
  	free_array(path);
- 	return (0);
- }
+	return (0);
+}
