@@ -17,7 +17,9 @@ char **pathfinder(void)
 			continue;
 		if (strcmp(pair[0], "PATH") == 0 && pair[1])
 			path_val = strdup(pair[1]);
-		free(pair[0]); free(pair[1]); free(pair);
+		free(pair[0]); 
+		free(pair[1]); 
+		free(pair);
 		if (path_val) 
 			break;
 	}
