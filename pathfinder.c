@@ -7,19 +7,19 @@
 
 char **pathfinder(void)
 {
-	char **array = NULL, *path_val = NULL, *with_slash;
+	char **array = NULL, *path_val = NULL, *with_slash, **token_path;
 	int i;
 
 	for (i = 0; environ[i]; i++)
 	{
-		char **pair = tokenization(environ[i], "=");
-		if (!pair) 
+		token_path = tokenization(environ[i], "=");
+		if (!token_path) 
 			continue;
-		if (strcmp(pair[0], "PATH") == 0 && pair[1])
-			path_val = strdup(pair[1]);
-		free(pair[0]); 
-		free(pair[1]); 
-		free(pair);
+		if (strcmp(token_path[0], "PATH") == 0 && token_path[1])
+			path_val = strdup(token_path[1]);
+		free(token_path[0]); 
+		free(token_path[1]); 
+		free(token_path);
 		if (path_val) 
 			break;
 	}
