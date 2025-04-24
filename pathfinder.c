@@ -1,5 +1,10 @@
 #include "shell.h"
 
+/**
+ * pathfinder - function to locate file in the path
+ * Return: array of path tokenized
+ */
+
 char **pathfinder(void)
 {
 	char **array = NULL, *path_val = NULL, *with_slash;
